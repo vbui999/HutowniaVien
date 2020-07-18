@@ -20,61 +20,61 @@ public class Product {
 
 	@Column(name = "uniquename")
 	private String uniquename;
-	
+
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "kod")
 	private String kod;
-	
+
 	@Column(name = "categoryname")
 	private String categoryname;
-	
+
 	@Column(name = "categoryid")
-	private int categoryid;
-	
+	private long categoryid;
+
 	@Column(name = "imgurlsmall")
 	private String imgurlsmall;
-	
+
 	@Column(name = "imgurlbig")
 	private String imgurlbig;
-	
+
 	@Column(name = "brand")
 	private String brand;
-	
+
 	@Column(name = "providername")
 	private String providername;
-	
+
 	@Column(name = "provideremail")
 	private String provideremail;
-	
+
 	@Column(name = "providerphone")
 	private String providerphone;
-	
+
 	@Column(name = "providerwebsite")
 	private String providerwebsite;
-	
+
 	@Column(name = "quantity")
 	private int quantity;
-	
+
 	@Column(name = "soldnumber")
 	private int soldnumber;
-	
+
 	@Column(name = "discription", columnDefinition = "TEXT")
 	private String discription;
-	
+
 	@Column(name = "price")
 	private Float price;
-	
+
 	@Column(name = "originprice")
 	private Float originprice;
-	
+
 	@Column(name = "isactivated")
 	private int isactivated = 1;
-	
+
 	@Column(name = "createddate")
 	private String createddate;
-	
+
 	@Column(name = "modifieddate")
 	private String modifieddate;
 
@@ -83,18 +83,17 @@ public class Product {
 
 	@Column(name = "size")
 	private String size;
-	
+
 	@Column(name = "color")
 	private String color;
-	
+
 	@Column(name = "pack")
-	private int pack=0;
-	
+	private int pack = 0;
+
 	@Column(name = "carton")
-	private int carton=0;
-	
-	
-	//getters and setters
+	private int carton = 0;
+
+	// getters and setters
 	public long getId() {
 		return id;
 	}
@@ -135,11 +134,11 @@ public class Product {
 		this.categoryname = categoryname;
 	}
 
-	public int getCategoryid() {
+	public long getCategoryid() {
 		return categoryid;
 	}
 
-	public void setCategoryid(int categoryid) {
+	public void setCategoryid(long categoryid) {
 		this.categoryid = categoryid;
 	}
 
@@ -310,10 +309,5 @@ public class Product {
 	public void setOriginprice(Float originprice) {
 		this.originprice = originprice;
 	}
-
-
-	
-	
-	
 
 }

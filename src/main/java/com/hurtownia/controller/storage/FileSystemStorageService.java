@@ -7,6 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,10 @@ public class FileSystemStorageService implements StorageService {
 	@Override
 	public void store(MultipartFile file) {
 		String filename = StringUtils.cleanPath(file.getOriginalFilename());
+		int nameLength = filename.length();		
+		LocalDateTime myDateObj = LocalDateTime.now();
+		filename = filename.substring(0, nameLength-5)+myDateObj.getYear()+myDateObj.getMonthValue()+myDateObj.getDayOfMonth()+filename.substring(nameLength-5);
+		
 		try {
 			if (file.isEmpty()) {
 				throw new StorageException("Failed to store empty file " + filename);
@@ -48,7 +55,6 @@ public class FileSystemStorageService implements StorageService {
 		catch (IOException e) {
 			throw new StorageException("Failed to store file " + filename, e);
 		}
-		System.out.println(filename);
 	}
 
 	@Override

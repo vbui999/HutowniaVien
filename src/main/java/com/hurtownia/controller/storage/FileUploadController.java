@@ -1,6 +1,7 @@
 package com.hurtownia.controller.storage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,16 +59,22 @@ public class FileUploadController {
 
 	@PostMapping("/admin/storage/upload_img/{id}")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,@PathVariable long id, RedirectAttributes redirectAttributes) {
+		
+		String filename = StringUtils.cleanPath(file.getOriginalFilename());
+		int nameLength = filename.length();		
+		LocalDateTime myDateObj = LocalDateTime.now();
+		filename = filename.substring(0, nameLength-5)+myDateObj.getYear()+myDateObj.getMonthValue()+myDateObj.getDayOfMonth()+filename.substring(nameLength-5);
+		
 		storageService.store(file);
-		redirectAttributes.addFlashAttribute("file_name",file.getOriginalFilename());
+		redirectAttributes.addFlashAttribute("file_name",filename);
 		
 		Product product = productService.getProductById(id);
 		
-		product.setImgurlbig("/resources/product_img/"+file.getOriginalFilename());
-		product.setImgurlsmall("/resources/product_img/"+file.getOriginalFilename());
+		product.setImgurlbig("/resources/product_img/"+filename);
+		product.setImgurlsmall("/resources/product_img/"+filename);
 		productService.saveOrUpdate(product);
 		
-		return "redirect:/admin/product/list";
+		return "redirect:/admin";
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

@@ -17,69 +17,117 @@
 </head>
 <body>
 	<div class="container" style="width: 100%">
-		<spring:url value="/admin/product/list" var="addURL" />
+		<spring:url value="/admin/product/page" var="addURL" />
 		<a class="btn btn-primary" href="${addURL}" role="button">Back to Product List</a>
 		<h2>Product Detail</h2>
 		<table class="table table-striped">
 			<thead>
-				<th scope="row">#ID|</th>
-				<th scope="row">(~_~)images</th>
-				<th scope="row">name|</th>
-				<th scope="row">uniquename|</th>
-				<th scope="row">title|</th>
-				<th scope="row">kod|</th>
-				<th scope="row">categoryname|</th>
-				<th scope="row">categoryid|</th>				
-				<th scope="row">brand|</th>
-				<th scope="row">providername|</th>
-				<th scope="row">provideremail|</th>
-				<th scope="row">providerphone|</th>
-				<th scope="row">providerwebsite|</th>
-				<th scope="row">quantity|</th>
-				<th scope="row">soldnumber|</th>
-				<th scope="row">discription__________|</th>
-				<th scope="row">price|</th>
-				<th scope="row">originprice|</th>
-				<th scope="row">isactivated|</th>
-				<th scope="row">createddate|</th>
-				<th scope="row">modifieddate|</th>
-				<th scope="row">type|</th>
-				<th scope="row">imgurlsmall|</th>
-				<th scope="row">imgurlbig|</th>
+				<th scope="row">Attribute Name</th>
+				<th scope="row">Content</th>
 			</thead>
 			<tbody>
 				<tr>
+					<td>Id</td>
 					<td>${productById.id}</td>
-					<td><img src="<c:url value="${productById.imgurlbig}"/>"
-						height="auto" width="150"></td>
+				</tr>
+				<tr>
+					<td>Image</td>
+					<td><img src="<c:url value="${productById.imgurlbig}"/>" height="auto" width="150"></td>
+				</tr>
+				<tr>
+					<td>Name</td>
 					<td>${productById.name}</td>
+				</tr>
+				<tr>
+					<td>Unique Name</td>
 					<td>${productById.uniquename}</td>
+				</tr>
+				<tr>
+					<td>Title</td>
 					<td>${productById.title}</td>
+				</tr>
+				<tr>
+					<td>Code</td>
 					<td>${productById.kod}</td>
+				</tr>
+				<tr>
+					<td>Category Name</td>
 					<td>${productById.categoryname }</td>
+				</tr>
+				<tr>
+					<td>Category ID</td>
 					<td>${productById.categoryid }</td>
+				</tr>
+				<tr>
+					<td>Brand</td>
 					<td>${productById.brand}</td>
+				</tr>
+				<tr>
+					<td>Provider Name</td>
 					<td>${productById.providername}</td>
+				</tr>
+				<tr>
+					<td>Provider Email</td>
 					<td>${productById.provideremail}</td>
+				</tr>
+				<tr>
+					<td>Provider Phone</td>
 					<td>${productById.providerphone}</td>
+				</tr>
+				<tr>
+					<td>Provider Website</td>
 					<td>${productById.providerwebsite}</td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
 					<td>${productById.quantity}</td>
+				</tr>
+				<tr>
+					<td>Sold number</td>
 					<td>${productById.soldnumber}</td>
+				</tr>
+				<tr>
+					<td>Description</td>
 					<td>${productById.discription}</td>
+				</tr>
+				<tr>
+					<td>Price</td>
 					<td>${productById.price}</td>
+				</tr>
+				<tr>
+					<td>Original Price</td>
 					<td>${productById.originprice}</td>
+				</tr>
+				<tr>
+					<td>Available</td>
 					<c:if test="${productById.isactivated eq 0}">
 						<td style="color: red; font-weight: bold; text-align: center;">No</td>
 					</c:if>
 					<c:if test="${productById.isactivated eq 1}">
 						<td style="color: blue; font-weight: bold; text-align: center;">Yes</td>
 					</c:if>
+				</tr>
+				<tr>
+					<td>Created date</td>
 					<td>${productById.createddate}</td>
+				</tr>
+				<tr>
+					<td>Modified date</td>
 					<td>${productById.modifieddate}</td>
+				</tr>
+				<tr>
+					<td>Type</td>
 					<td>${productById.type}</td>
+				</tr>
+				<tr>
+					<td>Image small</td>
 					<td>${productById.imgurlsmall}</td>
+				</tr>
+				<tr>
+					<td>Image big</td>
 					<td>${productById.imgurlbig}</td>
 				</tr>
+				
 			</tbody>
 		</table>	
 		<spring:url value="/admin/product/updateProduct/${productById.id}" var="updateURL" />
